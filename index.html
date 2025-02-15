@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unblocked Games Hub</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            background: linear-gradient(45deg, #ff6f61, #ffc107, #4caf50, #2196f3);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            margin-bottom: 30px;
+        }
+
+        /* Search Bar */
+        #searchContainer {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        #searchBox {
+            width: 80%;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 16px;
+        }
+
+        #searchButton {
+            padding: 12px 20px;
+            background-color: #FF4500;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #searchButton:hover {
+            background-color: #CC3700;
+        }
+
+        /* Game Cards Layout */
+        .game-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1000px;
+        }
+
+        .game {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .game:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+        }
+
+        .game h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .game a {
+            display: inline-block;
+            background-color: #FF4500;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .game a:hover {
+            background-color: #CC3700;
+        }
+
+        .game p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        /* Hide games that don't match the search */
+        .hidden {
+            display: none;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            #searchContainer {
+                flex-direction: column;
+            }
+
+            #searchBox {
+                width: 100%;
+            }
+        }
+
+        /* Gradient Animation */
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            background: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Unblocked Games Hub</h1>
+
+    <!-- Dark Mode Toggle -->
+    <button id="darkModeButton" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+    <!-- Search Bar -->
+    <div id="searchContainer">
+        <input type="text" id="searchBox" placeholder="Search anything...">
+        <button id="searchButton" onclick="searchAnything()">🔍 Search</button>
+    </div>
+
+    <!-- Game Categories Dropdown -->
+    <div>
+        <label for="categoryFilter">Filter by Category:</label>
+        <select id="categoryFilter" onchange="filterByCategory()">
+            <option value="">All Categories</option>
+            <option value="Arcade">Arcade</option>
+            <option value="Puzzle">Puzzle</option>
+            <option value="Strategy">Strategy</option>
+        </select>
+    </div>
+
+    <!-- Game List -->
+    <div class="game-container" id="gameList">
+        <!-- Example Games -->
+        <div class="game" data-name="Flappy Bird" data-category="Arcade" data-rating="4">
+            <h3>Flappy Bird</h3>
+            <p>Flappy Bird is a fun, addictive arcade game. Can you fly the bird through the pipes?</p>
+            <a href="games/flappybird/index.html" target="_blank">Play Flappy Bird</a>
+            <div class="rating">
+                Rating: <span id="flappy-rating">★★★★☆</span>
+            </div>
+        </div>
+        <div class="game" data-name="2048" data-category="Puzzle" data-rating="5">
+            <h3>2048</h3>
+            <p>2048 is a popular puzzle game where you combine tiles to reach the number 2048.</p>
+            <a href="games/2048/index.html" target="_blank">Play 2048</a>
+            <div class="rating">
+                Rating: <span id="2048-rating">★★★★★</span>
+            </div>
+        </div>
+        <div class="game" data-name="Chess" data-category="Strategy" data-rating="5">
+            <h3>Chess</h3>
+            <p>Classic chess game. Play with a friend or against the AI.</p>
+            <a href="games/chess/index.html" target="_blank">Play Chess</a>
+            <div class="rating">
+                Rating: <span id="chess-rating">★★★★★</span>
+            </div>
+        </div>
+        <div class="game" data-name="Snake" data-category="Arcade" data-rating="4">
+            <h3>Snake</h3>
+            <p>The classic snake game! Eat the food and grow longer while avoiding the walls.</p>
+            <a href="games/snake/index.html" target="_blank">Play Snake</a>
+            <div class="rating">
+                Rating: <span id="snake-rating">★★★★☆</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Iframe for Streaming Sites (GeForce Now) -->
+    <iframe id="gameIframe" style="width:80%; height: 500px; border:none; margin-top: 30px; display:none;"
+        sandbox="allow-scripts allow-same-origin"></iframe>
+
+    <script>
+        // Search function for anything
+        function searchAnything() {
+            const query = document.getElementById("searchBox").value.trim();
+            const iframe = document.getElementById("gameIframe");
+
+            if (query) {
+                iframe.style.display = "block"; // Show iframe
+
+                // Check for GeForce Now or other sites
+                if (query.toLowerCase().includes("geforce now")) {
+                    iframe.src = "https://play.geforcenow.com"; // Embed GeForce Now securely with HTTPS
+                } else {
+                    // Open other search results in a new tab using Bing
+                    window.open(`https://www.bing.com/search?q=${encodeURIComponent(query)}`, "_blank");
+                }
+            } else {
+                iframe.style.display = "none"; // Hide iframe if no query
+            }
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Filter games by category
+        function filterByCategory() {
+            const selectedCategory = document.getElementById('categoryFilter').value.toLowerCase();
+            const games = document.querySelectorAll('.game');
+            games.forEach(game => {
+                const category = game.getAttribute('data-category').toLowerCase();
+                if (!selectedCategory || category.includes(selectedCategory)) {
+                    game.classList.remove('hidden');
+                } else {
+                    game.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
